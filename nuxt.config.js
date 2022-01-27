@@ -1,4 +1,10 @@
 export default {
+  serverRuntimeConfig: {
+    umbracoURL: process.env.UMBRACO_URL || 'https://qa-cms.apeshill.com/',
+  },
+  publicRuntimeConfig: {
+    dataCacheMaxAge: process.env.DATA_CACHE_MAX_AGE || 1000 * 60 * 10,
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'OKR',
@@ -39,8 +45,16 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    proxy: true,
+    prefix: '/api',
+  },
+  proxy: {
+    '/api/': {
+      target: process.env.UMBRACO_URL || 'https://qa-cms.apeshill.com',
+      pathRewrite: { '^/api/': '' },
+      changeOrigin: true,
+      //
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
