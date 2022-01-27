@@ -1,43 +1,55 @@
 <template>
   <div>
-    <Intro />
+    <header></header>
+    <main>
+      <Page
+        v-for="(item, index) in moduleContent"
+        :key="index"
+        :class="[item.moduleName]"
+      >
+        <component
+          :is="item.moduleName"
+          :data="item.props"
+          :id="item.props.anchor"
+        />
+      </Page>
+    </main>
+    <!-- <Intro />
     <TestFile />
-    <Footer :data="footerModel"></Footer>
+    <HeroModule :data="moduleContent" /> -->
+    <footer>
+      <Footer :data="footerModel"></Footer>
+    </footer>
   </div>
 </template>
 
 <script>
+import Page from '~/components/Page.vue'
 export default {
+  components: { Page },
   async asyncData(context) {
     const {
-      // app,
-      // store,
       route,
-      // params,
-      // query,
-      // env,
-      // isDev,
-      // isHMR,
+
       redirect,
-      // error,
-      // $config,
+
       $axios,
     } = context
 
     try {
       const data = await $axios.get(route.fullPath)
 
-      // if (
-      //   data.request &&
-      //   data.request._redirectable &&
-      //   data.request._redirectable._redirectCount > 0
-      // ) {
-      //   console.log(`Redirecting ${data.config.url} to ${data.request.path}`)
-      //   redirect(301, data.request.path)
-      // } else if (data.status === 200 && typeof data.data !== 'object') {
-      //   console.log(`Response not object: ${data.data}`)
-      //   redirect('/500')
-      // }
+      if (
+        data.request &&
+        data.request._redirectable &&
+        data.request._redirectable._redirectCount > 0
+      ) {
+        console.log(`Redirecting ${data.config.url} to ${data.request.path}`)
+        redirect(301, data.request.path)
+      } else if (data.status === 200 && typeof data.data !== 'object') {
+        console.log(`Response not object: ${data.data}`)
+        redirect('/500')
+      }
 
       return {
         moduleContent: data.data.moduleContent,
