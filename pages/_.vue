@@ -9,8 +9,8 @@
       >
         <component
           :is="item.moduleName"
-          :data="item.props"
           :id="item.props.anchor"
+          :data="item.props"
         />
       </Page>
     </main>
