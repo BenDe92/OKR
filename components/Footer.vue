@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <h2>footer</h2>
-    <pre>{{ data }}</pre>
+    <!-- <pre>{{ data }}</pre> -->
   </div>
 </template>
 <script>
