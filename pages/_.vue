@@ -14,12 +14,14 @@
         />
       </Page>
     </main>
-    <!-- <Intro />
-    <TestFile />
-    <HeroModule :data="moduleContent" /> -->
+
     <footer>
       <Footer :data="footerModel"></Footer>
     </footer>
+
+    <client-only>
+      <AnimUp></AnimUp>
+    </client-only>
   </div>
 </template>
 
