@@ -18,10 +18,8 @@
     <footer>
       <Footer :data="footerModel"></Footer>
     </footer>
-
-    <client-only>
-      <AnimUp></AnimUp>
-    </client-only>
+    <TestGreenSock></TestGreenSock>
+    <AnimUp></AnimUp>
   </div>
 </template>
 
