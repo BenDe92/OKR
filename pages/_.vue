@@ -12,7 +12,9 @@
           :id="item.props.anchor"
           :data="item.props"
         />
+        <!-- <pre>{{ moduleContent }}</pre> -->
       </Page>
+      <!-- <HeroModule></HeroModule> -->
     </main>
 
     <footer>
@@ -24,9 +26,9 @@
 </template>
 
 <script>
-import Page from '~/components/Page.vue'
+// import Page from '~/components/Page.vue'
 export default {
-  components: { Page },
+  // components: { Page },
   async asyncData(context) {
     const {
       route,
